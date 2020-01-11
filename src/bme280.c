@@ -132,7 +132,7 @@ set_osrs_press_temp_settings(const struct bme280 *self, u8 desired_settings,
 	}
 
 	if (desired_settings & BME280_OSRS_PRESS_SEL) {
-		ctrl_meas.osrs_t = settings->osrs_p;
+		ctrl_meas.osrs_p = settings->osrs_p;
 	}
 
 	if (desired_settings & BME280_OSRS_TEMP_SEL) {
