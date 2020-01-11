@@ -173,6 +173,26 @@ struct bme280 {
 };
 
 /**
+ * @brief Register contains two bits which inicate the status of the device
+ *
+ * @see BME280_STATUS_ADDR
+ */
+union bme280_status {
+	struct {
+		u8 im_update : 1; /**< Automatically set to 1 when the NVM data 
+			are being copied to image registers and back to 0 when 
+			the copying is done/ The data re copied at 
+			power-on-reset and before every conversion */
+		u8 none1 : 2;
+		u8 measuring : 1; /**< Automatically set to 1 when a 
+			conversion is running and back to 0 when the results 
+			have been transferred to the data registers */
+		u8 none2 : 4;
+	};
+	u8 reg;
+};
+
+/**
  * @brief Register sets the rate, filter and interface options of the device.
  * Writes to the config register in normal mode may be ignored. In sleep mode 
  * mode writes are not ignored
@@ -366,6 +386,29 @@ ssize_t bme280_soft_reset(const struct bme280 *self);
  */
 ssize_t bme280_get_sensor_data(struct bme280 *self, u8 sensor_comp,
 			       struct bme280_data *comp_data);
+
+/**
+ * @brief Same as bme280_get_sensor_data but set forced power mode before 
+ * get sensor data. Put device to sleep after measuring
+ *
+ * @param[in] self : Structure instance of bme280
+ * @param[in] sensor_comp : Variable which selects which data to be read from 
+ * the sensor.
+ *
+ *   sensor_comp  |  Macros
+ * ---------------|----------------
+ *   1            |  BME280_PRESS
+ *   2            |  BME280_TEMP
+ *   4            |  BME280_HUM
+ *   7            |  BME280_ALL
+ *
+ * @param[out] comp_data : Structure instance of bme280_data
+ *
+ * @return Result of execution status
+ * @retval zero -> Success / +ve value -> Warning / -ve value -> Error
+ */
+ssize_t bme280_get_sensor_data_forced(struct bme280 *self, u8 sensor_comp,
+				      struct bme280_data *comp_data);
 
 /**
  * @brief Parse the pressure, temperature and humidity data and store it in 

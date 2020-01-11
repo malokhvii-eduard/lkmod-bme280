@@ -681,6 +681,39 @@ err:
 	return ret;
 }
 
+ssize_t bme280_get_sensor_data_forced(struct bme280 *self, u8 sensor_comp,
+				      struct bme280_data *comp_data)
+{
+	ssize_t ret;
+
+	union bme280_status status;
+
+	ret = bme280_set_sensor_mode(self, BME280_FORCED_MODE);
+	if (ret != BME280_OK) {
+		goto err;
+	}
+
+	ret = bme280_get_regs(self, BME280_STATUS_ADDR, &status.reg, 1);
+	if (ret != BME280_OK) {
+		goto err;
+	}
+
+	while (status.measuring) {
+		ret = bme280_get_regs(self, BME280_STATUS_ADDR, &status.reg, 1);
+		if (ret != BME280_OK) {
+			goto err;
+		}
+	}
+
+	ret = bme280_get_sensor_data(self, sensor_comp, comp_data);
+	if (ret != BME280_OK) {
+		goto err;
+	}
+
+err:
+	return ret;
+}
+
 void bme280_parse_sensor_data(const u8 *reg_data,
 			      struct bme280_uncomp_data *uncomp_data)
 {
