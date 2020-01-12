@@ -63,6 +63,8 @@ static ssize_t bme280_i2c_register_device(struct i2c_client *client)
 	if (list_empty(&bme280_devices)) {
 		ret = bme280_create_regs_mapp();
 		if (ret) {
+			mutex_unlock(&bme280_devices_lock);
+
 			goto cleanup_device;
 		}
 	}
