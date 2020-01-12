@@ -244,11 +244,11 @@ union bme280_ctrl_meas {
 };
 
 /**
- * @brief Reads the cip-id and calibration data from the sensor
+ * @brief Reads the chip-id and calibration data from the sensor
  *
  * @param[in, out] self : Structure instance of bme280
  * 
- * @return Result of execution status
+ * @return Result of execution
  * @retval zero -> Success / -ve value -> Error
  */
 ssize_t bme280_init(struct bme280 *self, struct i2c_client *client);
@@ -261,7 +261,7 @@ ssize_t bme280_init(struct bme280 *self, struct i2c_client *client);
  * @param[out] reg_data : Pointer to data buffer to store the read data
  * @param[in] len : Nu,ber of bytes of data to be read
  * 
- * @return Result of execution status
+ * @return Result of execution
  * @retval zero -> Success / +ve value -> Warning / -ve value -> Error
  */
 ssize_t bme280_get_regs(const struct bme280 *self, u8 reg_addr, u8 *reg_data,
@@ -276,7 +276,7 @@ ssize_t bme280_get_regs(const struct bme280 *self, u8 reg_addr, u8 *reg_data,
  * sensor
  * @param[in] len : Number of bytes of data to write
  *
- * @return Result of execution status
+ * @return Result of execution
  * @retval zero -> Success / +ve value -> Warning / -ve value -> Error
  */
 ssize_t bme280_set_regs(const struct bme280 *self, u8 *reg_addr,
@@ -288,7 +288,7 @@ ssize_t bme280_set_regs(const struct bme280 *self, u8 *reg_addr,
  *
  * @param[in,out] self : Structure instance of bme280
  *
- * @return Result of execution status
+ * @return Result of execution
  * @retval zero -> Success / +ve value -> Warning / -ve value -> Error
  */
 ssize_t bme280_get_sensor_settings(struct bme280 *self);
@@ -313,7 +313,7 @@ ssize_t bme280_get_sensor_settings(struct bme280 *self);
  *   BME280_FILTER_SEL      |  To set filter setting
  *   BME280_STANDBY_SEL     |  To set standby duration setting
  *
- * @return Result of execution status
+ * @return Result of execution
  * @retval zero -> Success / +ve value -> Warning / -ve value -> Error
  */
 ssize_t bme280_set_sensor_settings(const struct bme280 *self,
@@ -331,7 +331,7 @@ ssize_t bme280_set_sensor_settings(const struct bme280 *self,
  *   1            |  BME280_FORCED_MODE
  *   3            |  BME280_NORMAL_MODE
  *
- * @return Result of execution status
+ * @return Result of execution
  * @retval zero -> Success / +ve value -> Warning / -ve value -> Error
  */
 ssize_t bme280_get_sensor_mode(const struct bme280 *self, u8 *sensor_mode);
@@ -348,7 +348,7 @@ ssize_t bme280_get_sensor_mode(const struct bme280 *self, u8 *sensor_mode);
  *   1            |  BME280_FORCED_MODE
  *   3            |  BME280_NORMAL_MODE
  *
- * @return Result of execution status
+ * @return Result of execution
  * @retval zero -> Success / +ve value -> Warning / -ve value -> Error
  */
 ssize_t bme280_set_sensor_mode(const struct bme280 *self, u8 sensor_mode);
@@ -358,7 +358,7 @@ ssize_t bme280_set_sensor_mode(const struct bme280 *self, u8 sensor_mode);
  *
  * @param[in] self : Structure instance of bme280
  *
- * @return Result of execution status
+ * @return Result of execution
  * @retval zero -> Success / +ve value -> Warning / -ve value -> Error
  */
 ssize_t bme280_soft_reset(const struct bme280 *self);
@@ -381,7 +381,7 @@ ssize_t bme280_soft_reset(const struct bme280 *self);
  *
  * @param[out] comp_data : Structure instance of bme280_data
  *
- * @return Result of execution status
+ * @return Result of execution
  * @retval zero -> Success / +ve value -> Warning / -ve value -> Error
  */
 ssize_t bme280_get_sensor_data(struct bme280 *self, u8 sensor_comp,
@@ -404,7 +404,7 @@ ssize_t bme280_get_sensor_data(struct bme280 *self, u8 sensor_comp,
  *
  * @param[out] comp_data : Structure instance of bme280_data
  *
- * @return Result of execution status
+ * @return Result of execution
  * @retval zero -> Success / +ve value -> Warning / -ve value -> Error
  */
 ssize_t bme280_get_sensor_data_forced(struct bme280 *self, u8 sensor_comp,
@@ -433,7 +433,7 @@ void bme280_parse_sensor_data(const u8 *reg_data,
  * temperature and/or humidity data
  * @param[in] calib_data : Pointer to the calibration data structure
  *
- * @return Result of execution status
+ * @return Result of execution
  * @retval zero -> Success / -ve value -> Error
  */
 ssize_t bme280_compensate_data(u8 sensor_comp,
