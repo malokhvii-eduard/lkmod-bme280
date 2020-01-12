@@ -4,9 +4,10 @@
 
 #include <module.h>
 #include <bme280.h>
+#include <bme280_regs_mapp.h>
 
 /** Pointer to last selected device, all operations perfoms with this device */
-struct bme280 *selected_bme280_device;
+struct bme280 *bme280_device = NULL;
 
 /** Linked list to hold registered devices */
 LIST_HEAD(bme280_devices);
@@ -21,7 +22,8 @@ static ssize_t bme280_i2c_register_device(struct i2c_client *client)
 	struct bme280 *device = kzalloc(sizeof(*device), GFP_KERNEL);
 	if (device == NULL) {
 		pr_err(THIS_MODULE_NAME
-		       " %s-%d: failed to allocate memory for device at 0x%x\n",
+		       ": failed to allocate memory for device at "
+		       " %s-%d 0x%x\n",
 		       client->adapter->dev.of_node->name, client->adapter->nr,
 		       client->addr);
 
@@ -32,7 +34,24 @@ static ssize_t bme280_i2c_register_device(struct i2c_client *client)
 	ret = bme280_init(device, client);
 	if (ret != BME280_OK) {
 		pr_err(THIS_MODULE_NAME
-		       " %s-%d: failed to initialize device at 0x%x\n",
+		       ": failed to initialize device at %s-%d 0x%x\n",
+		       client->adapter->dev.of_node->name, client->adapter->nr,
+		       client->addr);
+
+		goto cleanup_device;
+	}
+
+	/** Default settings for new device */
+	device->settings.osrs_p = BME280_INDOOR_PRESS_OVERSAMPLING;
+	device->settings.osrs_t = BME280_INDOOR_TEMP_OVERSAMPLING;
+	device->settings.osrs_h = BME280_INDOOR_HUM_OVERSAMPLING;
+	device->settings.filter = BME280_INDOOR_FILTER_COEFF;
+	device->settings.standby_time = BME280_INDOOR_STANDBY_TIME;
+
+	ret = bme280_set_sensor_settings(device, BME280_ALL_SETTINGS_SEL);
+	if (ret != BME280_OK) {
+		pr_err(THIS_MODULE_NAME
+		       ": failed to set device settings at %s-%d 0x%x\n",
 		       client->adapter->dev.of_node->name, client->adapter->nr,
 		       client->addr);
 
@@ -41,10 +60,17 @@ static ssize_t bme280_i2c_register_device(struct i2c_client *client)
 
 	mutex_lock(&bme280_devices_lock);
 
+	if (list_empty(&bme280_devices)) {
+		ret = bme280_create_regs_mapp();
+		if (ret) {
+			goto cleanup_device;
+		}
+	}
+
 	list_add(&device->registered, &bme280_devices);
 
 	if (list_is_singular(&bme280_devices)) {
-		selected_bme280_device = device;
+		bme280_device = device;
 	}
 
 	mutex_unlock(&bme280_devices_lock);
@@ -77,16 +103,16 @@ static ssize_t bme280_i2c_unregister_device(struct i2c_client *client)
 	}
 
 	if (contains) {
-		if (device == selected_bme280_device) {
-			selected_bme280_device = NULL;
+		if (device == bme280_device) {
+			bme280_device = NULL;
 		}
 
 		list_del(iter);
 		kfree(device);
 	} else {
 		pr_err(THIS_MODULE_NAME
-		       " %s-%d: couldn't found device for deinitialization,"
-		       " illegal device at 0x%x\n",
+		       ": couldn't found device for deinitialization,"
+		       " illegal device at %s-%d 0x%x\n",
 		       client->adapter->dev.of_node->name, client->adapter->nr,
 		       client->addr);
 
@@ -95,15 +121,17 @@ static ssize_t bme280_i2c_unregister_device(struct i2c_client *client)
 	}
 
 	if (!list_empty(&bme280_devices)) {
-		selected_bme280_device = list_first_entry(
-			&bme280_devices, struct bme280, registered);
+		bme280_device = list_first_entry(&bme280_devices, struct bme280,
+						 registered);
+	} else {
+		bme280_remove_regs_mapp();
 	}
 
-	mutex_unlock(&bme280_devices_lock);
-
-	return 0;
+	ret = 0;
 
 err:
+	mutex_unlock(&bme280_devices_lock);
+
 	return ret;
 }
 
@@ -117,14 +145,14 @@ static int bme280_i2c_probe(struct i2c_client *client,
 		ret = bme280_i2c_register_device(client);
 		if (ret) {
 			pr_err(THIS_MODULE_NAME
-			       " %s-%d: failed to register device at 0x%x\n",
+			       ": failed to register device at %s-%d 0x%x\n",
 			       client->adapter->dev.of_node->name,
 			       client->adapter->nr, client->addr);
 
 			goto err;
 		}
 
-		pr_info(THIS_MODULE_NAME " %s-%d: register device at 0x%x\n",
+		pr_info(THIS_MODULE_NAME ": register device at %s-%d 0x%x\n",
 			client->adapter->dev.of_node->name, client->adapter->nr,
 			client->addr);
 
@@ -148,11 +176,11 @@ static int bme280_i2c_remove(struct i2c_client *client)
 	ret = bme280_i2c_unregister_device(client);
 	if (ret) {
 		pr_err(THIS_MODULE_NAME
-		       " %s-%d: failed to unregister device at 0x%x\n",
+		       ": failed to unregister device at %s-%d 0x%x\n",
 		       client->adapter->dev.of_node->name, client->adapter->nr,
 		       client->addr);
 	} else {
-		pr_info(THIS_MODULE_NAME " %s-%d: unregister device at 0x%x\n",
+		pr_info(THIS_MODULE_NAME ": unregister device at %s-%d 0x%x\n",
 			client->adapter->dev.of_node->name, client->adapter->nr,
 			client->addr);
 	}
