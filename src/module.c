@@ -5,6 +5,7 @@
 #include <module.h>
 #include <bme280.h>
 #include <bme280_regs_mapp.h>
+#include <bme280_info_mapp.h>
 
 /** Pointer to last selected device, all operations perfoms with this device */
 struct bme280 *bme280_device = NULL;
@@ -63,9 +64,12 @@ static ssize_t bme280_i2c_register_device(struct i2c_client *client)
 	if (list_empty(&bme280_devices)) {
 		ret = bme280_create_regs_mapp();
 		if (ret) {
-			mutex_unlock(&bme280_devices_lock);
+			goto unlock_devices;
+		}
 
-			goto cleanup_device;
+		ret = bme280_create_info_mapp();
+		if (ret) {
+			goto unlock_devices;
 		}
 	}
 
@@ -79,6 +83,8 @@ static ssize_t bme280_i2c_register_device(struct i2c_client *client)
 
 	return 0;
 
+unlock_devices:
+	mutex_unlock(&bme280_devices_lock);
 cleanup_device:
 	kfree(device);
 err:
@@ -127,6 +133,7 @@ static ssize_t bme280_i2c_unregister_device(struct i2c_client *client)
 						 registered);
 	} else {
 		bme280_remove_regs_mapp();
+		bme280_remove_info_mapp();
 	}
 
 	ret = 0;
