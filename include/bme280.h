@@ -143,7 +143,7 @@ struct bme280_data {
 	u32 pressure; /**< Compensated pressure,
 		- Pa = compensated pressure,
 		- mm Hg = compensated pressure / 133.3224 */
-	s32 temperature; /**< Comprensated temperature,
+	s32 temperature; /**< Compensated temperature,
 		- °C = compensated temperature / 100 */
 	u32 humidity; /**< Compensated humidity,
 		- % = compensated humidity / 1024 */
@@ -173,7 +173,7 @@ struct bme280 {
 };
 
 /**
- * @brief Register contains two bits which inicate the status of the device
+ * @brief Register contains two bits which indicate the status of the device
  *
  * @see BME280_STATUS_ADDR
  */
