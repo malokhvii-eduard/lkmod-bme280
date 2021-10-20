@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-=======
-# SPDX-License-Identifier: GPL-2.0
-
->>>>>>> a33b14d... build(Makefile): add pre configured for ARM platform
 PWD   := $(shell pwd)
 PHONY :=
 
@@ -57,11 +52,9 @@ modules: ## Build this kernel module
 		M=$(PWD) \
 		modules
 
-	@$(CP) *.symvers *.order *.ko $(BUILDDIR)
-	@$(MV) *.o .*.cmd *.mod.c *.mod $(BUILDDIR)
+	@$(MV) *.symvers *.order *.ko *.o .*.cmd *.mod.c *.mod $(BUILDDIR)
 	@$(MV) $(SRCDIR)/*.o $(SRCDIR)/.*.cmd $(BUILDDIR)
-	@echo "  COPY  *.ko *.symvers *.order"
-	@echo "  MOVE  *.o .*.cmd *.mod.c *.mod"
+	@echo "  MOVE  *.symvers *.order *.ko *.o .*.cmd *.mod.c *.mod"
 	@echo "  MOVE  $(SRCDIR)/*.o $(SRCDIR)/.*.cmd"
 
 modules_release: EXTRA_CFLAGS += -std=gnu89 -Wall -Winline ## Build this kernel module with release flags
