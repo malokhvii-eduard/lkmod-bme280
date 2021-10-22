@@ -1,0 +1,23 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    name: 🎨 Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install code formatter
+        run: sudo apt-get install clang-format
+      - name: Check code style
+        run: |
+          find include -type f | xargs clang-format --dry-run -Werror
+          find src -type f | xargs clang-format --dry-run -Werror
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+      - name: Install markdownlint
+        run: npm install -g markdownlint-cli
+      - name: Check Markdown files
+        run: markdownlint .
