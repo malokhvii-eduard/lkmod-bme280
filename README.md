@@ -17,11 +17,12 @@
 
 [![License](https://img.shields.io/badge/license-MIT-3178C6?style=flat)](LICENSE)
 ![Style Guide](https://img.shields.io/badge/code%20style-linux-FFC557?style=flat)
-![clang-format](https://img.shields.io/badge/formatter-clang--format-4B32C3?style=flat)
+![clang-format](https://img.shields.io/badge/formatter-clang--format-262D3A?style=flat)
 [![markdownlint](https://img.shields.io/badge/linter-markdownlint-000?style=flat)][github-markdownlint]
 ![platform](https://img.shields.io/badge/platform-linux-FFC557?style=flat)
 [![Tested on Raspberry Pi](https://img.shields.io/badge/tested%20on-raspberry%20pi-A22846)][raspberrypi]
 [![Tested on Tinker Board](https://img.shields.io/badge/tested%20on-tinker%20board-005571)][tinker-board]
+![CI Workflow](https://github.com/malokhvii-eduard/lkmod-bme280/actions/workflows/ci.yml/badge.svg)
 
   </p>
 </div>
@@ -59,17 +60,21 @@ you are running. You can find the kernel version via `uname -r`.
 3. Initialize the sensor from user space (`echo "bme280 'your address, usually
 0x76 or 0x77'" > /sys/bus/i2c/devices/i2c-'your adapter number'/new_device`)
 
-## :grey_question: FAQ
+## :question: FAQs
 
-### :raising_hand_man: How to access sensor settings, calibration data, measurements?
+<!-- FAQ 1 -->
+<!-- markdownlint-disable MD013 -->
+### :raising_hand_man: How to access sensor settings, calibration data, measurements ?
+<!-- markdownlint-enable MD013 -->
 
 <details>
   <summary>
     👉
     <a href="https://man7.org/linux/man-pages/man5/sysfs.5.html"
       aria-label="filesystem for exporting kernel objects">sysfs</a>
-    &ndash; filesystem for exporting kernel objects</summary>
-  <p id="sysfs" align="center" markdown="1">
+    &ndash; filesystem for exporting kernel objects
+  </summary>
+  <br>
 
 | Mapping                        | Operations | Description                    |
 | ------------------------------ | ---------- | ------------------------------ |
@@ -86,7 +91,6 @@ you are running. You can find the kernel version via `uname -r`.
 | /sys/class/bme280/temperature  | read       | Temperature (°C * 100)         |
 | /sys/class/bme280/humidity     | read       | Humidity (% * 1024)            |
 
-  </p>
 </details>
 
 <details>
@@ -96,21 +100,21 @@ you are running. You can find the kernel version via `uname -r`.
       aria-label="process information pseudo-filesystem">procfs</a>
     &ndash; process information pseudo-filesystem</i>
   </summary>
-  <p id="proc" align="center" markdown="1">
+  <br>
 
 | Mapping           | Operations | Description                   |
 | ----------------- | ---------- | ----------------------------- |
 | /proc/bme280info  | read       | Device information as a table |
 | /proc/bme280calib | read       | Calibration data as a table   |
 
-  </p>
 </details>
 
-### :raising_hand_man: How to switch to another sensor?
+<!-- FAQ 2 -->
+### :raising_hand_man: How to switch to another sensor ?
 
-:point_right: If you want to switch to another sensor, use `/sys/bme280/i2c` mapping, write
-to it a number of I2C adapter in decimal and device address in hex
-(`echo "0 0x77" > /sys/bme280/i2c`).
+:point_right: If you want to switch to another sensor, use `/sys/bme280/i2c`
+mapping, write to it a number of I2C adapter in decimal and device address in
+hex (`echo "0 0x77" > /sys/bme280/i2c`).
 
 ## :hammer_and_wrench: Tech Stack
 
@@ -129,9 +133,10 @@ to it a number of I2C adapter in decimal and device address in hex
 [![Shields.io](https://img.shields.io/badge/Shields.io-000?logo=shieldsdotio&logoColor=fff&style=flat)][shields]
 [![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=fff&style=flat)][git-scm]
 [![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=fff&style=flat)][github]
+[![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?logo=githubactions&logoColor=fff&style=flat)][github-actions]
 <!-- markdownlint-enable MD013 -->
 
-## :pray: Contributing
+## :writing_hand: Contributing
 
 :+1::tada: *First off, thanks for taking the time to contribute!* :tada::+1:
 
@@ -156,6 +161,7 @@ more information.
 [man-sysfs]: https://man7.org/linux/man-pages/man5/sysfs.5.html
 
 <!-- Github links -->
+[github-actions]: https://docs.github.com/en/actions
 [github-linux]: https://github.com/torvalds/linux
 [github-markdownlint]: https://github.com/DavidAnson/markdownlint
 [github-simple-icons]: https://github.com/simple-icons/simple-icons
