@@ -38,6 +38,12 @@ sensor settings, calibration data, measurements
 - Tested on: [*Rasbperry Pi 3B+*][raspberrypi],
 [*Asus Tinker Board*][tinker-board]
 
+## :sunflower: Motivation
+
+Final project for my education in
+[Linux Kernel GL BaseCamp][linux-kernel-basecamp]. I participated in
+the course from November 2019 until March 2020.
+
 ## :sparkles: Getting Started
 
 ### :books: Prerequisites
@@ -64,7 +70,7 @@ you are running. You can find the kernel version via `uname -r`.
 
 <!-- FAQ 1 -->
 <!-- markdownlint-disable MD013 -->
-### :raising_hand_man: How to access sensor settings, calibration data, measurements ?
+### :raising_hand_man: How to access sensor settings, calibration data, measurements?
 <!-- markdownlint-enable MD013 -->
 
 <details>
@@ -110,7 +116,7 @@ you are running. You can find the kernel version via `uname -r`.
 </details>
 
 <!-- FAQ 2 -->
-### :raising_hand_man: How to switch to another sensor ?
+### :raising_hand_man: How to switch to another sensor?
 
 :point_right: If you want to switch to another sensor, use `/sys/bme280/i2c`
 mapping, write to it a number of I2C adapter in decimal and device address in
@@ -171,6 +177,7 @@ more information.
 [bosch-sensortec-bme280]: https://www.bosch-sensortec.com/products/environmental-sensors/humidity-sensors-bme280
 [editorconfig]: https://editorconfig.org
 [git-scm]: https://git-scm.com
+[linux-kernel-basecamp]: https://www.globallogic.com/ua/gl-basecamp/linux-kernel/
 [raspberrypi]: https://www.raspberrypi.com
 [shields]: https://shields.io
 [tinker-board]: https://tinker-board.asus.com/product/tinker-board.html
