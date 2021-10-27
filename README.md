@@ -31,11 +31,11 @@
 
 ## :tada: Features
 
-- Provides an interface in [*sysfs*][man-sysfs] and [*procfs*][man-proc] for
-sensor settings, calibration data, measurements
-- Supports multiple sensors on the same I2C adapter
-- Supports multiple I2C adapters
-- Tested on: [*Rasbperry Pi 3B+*][raspberrypi],
+- :card_file_box: Provides an interface in [*sysfs*][man-sysfs] and
+[*procfs*][man-proc] for sensor settings, calibration data, measurements
+- :gear: Supports multiple sensors on the same I2C adapter
+- :electric_plug: Supports multiple I2C adapters
+- :alembic: Tested on: [*Rasbperry Pi 3B+*][raspberrypi],
 [*Asus Tinker Board*][tinker-board]
 
 ## :sunflower: Motivation
