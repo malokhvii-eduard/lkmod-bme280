@@ -29,48 +29,48 @@
 
 ---
 
-## :tada: Features
+## 🎉 Features
 
-- :card_file_box: Provides an interface in [*sysfs*][man-sysfs] and
+- 🗃️ Provides an interface in [*sysfs*][man-sysfs] and
 [*procfs*][man-proc] for sensor settings, calibration data, measurements
-- :gear: Supports multiple sensors on the same I2C adapter
-- :electric_plug: Supports multiple I2C adapters
-- :alembic: Tested on: [*Rasbperry Pi 3B+*][raspberrypi],
+- ⚙️ Supports multiple sensors on the same I2C adapter
+- 🔌 Supports multiple I2C adapters
+- ⚗️ Tested on: [*Rasbperry Pi 3B+*][raspberrypi],
 [*Asus Tinker Board*][tinker-board]
 
-## :sunflower: Motivation
+## 🌻 Motivation
 
 Final project for my education in
 [Linux Kernel GL BaseCamp][linux-kernel-basecamp]. I participated in
 the course from November 2019 until March 2020.
 
-## :sparkles: Getting Started
+## ✨ Getting Started
 
-### :books: Prerequisites
+### 📚 Prerequisites
 
 Firstly you will need to install build dependencies such as compiler
 (`build-essential`, `g++-arm-linux-gnueabihf`, `gdb-multiarch`) and
 linux-headers. Next you will need to get source code for exact kernel version
 you are running. You can find the kernel version via `uname -r`.
 
-### :package: Installation
+### 📦 Installation
 
 1. Clone the *Repository*
 2. Build this *Kernel Module* (`make clean modules_release`)
 3. Install this *Kernel Module* (`make modules_install`)
 
-### :eyes: Usage
+### 👀 Usage
 
 1. Connect the sensor to your host
 2. Scan I2C bus to find the sensor address (`i2cdetect`)
 3. Initialize the sensor from user space (`echo "bme280 'your address, usually
 0x76 or 0x77'" > /sys/bus/i2c/devices/i2c-'your adapter number'/new_device`)
 
-## :question: FAQs
+## ❓ FAQs
 
 <!-- FAQ 1 -->
 <!-- markdownlint-disable MD013 -->
-### :raising_hand_man: How to access sensor settings, calibration data, measurements?
+### 🙋‍♂️ How to access sensor settings, calibration data, measurements?
 <!-- markdownlint-enable MD013 -->
 
 <details>
@@ -116,13 +116,13 @@ you are running. You can find the kernel version via `uname -r`.
 </details>
 
 <!-- FAQ 2 -->
-### :raising_hand_man: How to switch to another sensor?
+### 🙋‍♂️ How to switch to another sensor?
 
-:point_right: If you want to switch to another sensor, use `/sys/bme280/i2c`
+👉 If you want to switch to another sensor, use `/sys/bme280/i2c`
 mapping, write to it a number of I2C adapter in decimal and device address in
 hex (`echo "0 0x77" > /sys/bme280/i2c`).
 
-## :hammer_and_wrench: Tech Stack
+## 🛠️ Tech Stack
 
 <!-- markdownlint-disable MD013 -->
 [![EditorConfig](https://img.shields.io/badge/EditorConfig-FEFEFE?logo=editorconfig&logoColor=000&style=flat)][editorconfig]
@@ -142,9 +142,9 @@ hex (`echo "0 0x77" > /sys/bme280/i2c`).
 [![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?logo=githubactions&logoColor=fff&style=flat)][github-actions]
 <!-- markdownlint-enable MD013 -->
 
-## :writing_hand: Contributing
+## ✍️ Contributing
 
-:+1::tada: *First off, thanks for taking the time to contribute!* :tada::+1:
+👍🎉 *First off, thanks for taking the time to contribute!* 🎉👍
 
 Contributions are what make the open source community such an amazing place to
 be learn, inspire, and create. Any contributions you make are **greatly
@@ -156,7 +156,7 @@ appreciated**.
 4. Push to the *Branch* (`git push origin feature/awesome-feature`)
 5. Open a *Pull Request*
 
-## :warning: License
+## ⚠️ License
 
 `lkmod-bme280` is licenced under the MIT License. See the [LICENSE](LICENSE) for
 more information.
