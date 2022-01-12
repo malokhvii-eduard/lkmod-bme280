@@ -1,7 +1,7 @@
 /**
  * @brief Modified Bosch Sensortec's BME280 pressure sensor driver for
  * linux kernel
- * 
+ *
  * @author Eduard Malokhvii <malokhvii.ee@gmail.com>
  * @version 1.0
  */
@@ -179,13 +179,13 @@ struct bme280 {
  */
 union bme280_status {
 	struct {
-		u8 im_update : 1; /**< Automatically set to 1 when the NVM data 
-			are being copied to image registers and back to 0 when 
-			the copying is done/ The data re copied at 
+		u8 im_update : 1; /**< Automatically set to 1 when the NVM data
+			are being copied to image registers and back to 0 when
+			the copying is done/ The data re copied at
 			power-on-reset and before every conversion */
 		u8 none1 : 2;
-		u8 measuring : 1; /**< Automatically set to 1 when a 
-			conversion is running and back to 0 when the results 
+		u8 measuring : 1; /**< Automatically set to 1 when a
+			conversion is running and back to 0 when the results
 			have been transferred to the data registers */
 		u8 none2 : 4;
 	};
@@ -194,7 +194,7 @@ union bme280_status {
 
 /**
  * @brief Register sets the rate, filter and interface options of the device.
- * Writes to the config register in normal mode may be ignored. In sleep mode 
+ * Writes to the config register in normal mode may be ignored. In sleep mode
  * mode writes are not ignored
  *
  * @see BME280_CONFIG_ADDR
@@ -212,9 +212,9 @@ union bme280_config {
 	u8 reg;
 };
 
-/** 
+/**
  * @brief Register sets the humidity data acquisition options of the device.
- * Changes to this register only become effective after a write operation to 
+ * Changes to this register only become effective after a write operation to
  * ctrl_meas
  *
  * @see BME280_CTRL_HUM_ADDR
@@ -228,11 +228,11 @@ union bme280_ctrl_hum {
 };
 
 /**
- * @brief Register sets the pressure and temperature data acquisition options 
- * of the device. The register needs to be written after changing ctrl_hum for 
+ * @brief Register sets the pressure and temperature data acquisition options
+ * of the device. The register needs to be written after changing ctrl_hum for
  * the changes to become effective
  *
- * @see BME280_CTRL_MEAS_ADDR 
+ * @see BME280_CTRL_MEAS_ADDR
  */
 union bme280_ctrl_meas {
 	struct {
@@ -247,7 +247,7 @@ union bme280_ctrl_meas {
  * @brief Reads the chip-id and calibration data from the sensor
  *
  * @param[in, out] self : Structure instance of bme280
- * 
+ *
  * @return Result of execution
  * @retval zero -> Success / -ve value -> Error
  */
@@ -255,12 +255,12 @@ ssize_t bme280_init(struct bme280 *self, struct i2c_client *client);
 
 /**
  * @brief Reads the data from the given register address of the sensor
- * 
+ *
  * @param[in] self : Structure instance of bme280
  * @param[in] reg_addr : Register address from where the data to be read
  * @param[out] reg_data : Pointer to data buffer to store the read data
  * @param[in] len : Nu,ber of bytes of data to be read
- * 
+ *
  * @return Result of execution
  * @retval zero -> Success / +ve value -> Warning / -ve value -> Error
  */
@@ -269,10 +269,10 @@ ssize_t bme280_get_regs(const struct bme280 *self, u8 reg_addr, u8 *reg_data,
 
 /**
  * @brief Writes the given data to the register address of the sensor
- * 
+ *
  * @param[in] self : Structure instance of bme280
  * @param[in] reg_addr : Register address from where the data to be written
- * @param[in] reg_data : Pointer to data buffer which is to be written in the 
+ * @param[in] reg_data : Pointer to data buffer which is to be written in the
  * sensor
  * @param[in] len : Number of bytes of data to write
  *
@@ -283,7 +283,7 @@ ssize_t bme280_set_regs(const struct bme280 *self, u8 *reg_addr,
 			const u8 *reg_data, u8 len);
 
 /**
- * @brief Gets the oversampling, filter and standby duration (normal mode) 
+ * @brief Gets the oversampling, filter and standby duration (normal mode)
  * settings from the sensor
  *
  * @param[in,out] self : Structure instance of bme280
@@ -294,15 +294,15 @@ ssize_t bme280_set_regs(const struct bme280 *self, u8 *reg_addr,
 ssize_t bme280_get_sensor_settings(struct bme280 *self);
 
 /**
- * @brief Sets the oversampling, filter and standby duration (normal mode) 
+ * @brief Sets the oversampling, filter and standby duration (normal mode)
  * settings in the sensor
  *
  * @param[in] self : Structure instance of bme280
- * @param[in] desired_settings : Variable used to select the settings which 
+ * @param[in] desired_settings : Variable used to select the settings which
  * are to be set in the sensor
  *
- * @note : Below are the macros to be used by the user for selecting the 
- * desired settings. User can do OR operation of these macros for configuring 
+ * @note : Below are the macros to be used by the user for selecting the
+ * desired settings. User can do OR operation of these macros for configuring
  * multiple settings
  *
  *   Macros                 |  Functionality
@@ -364,12 +364,12 @@ ssize_t bme280_set_sensor_mode(const struct bme280 *self, u8 sensor_mode);
 ssize_t bme280_soft_reset(const struct bme280 *self);
 
 /**
- * @brief Reads the pressure, temperature and humidity data from the sensor, 
- * compensates the data and store it in the bme280_data structure instance 
+ * @brief Reads the pressure, temperature and humidity data from the sensor,
+ * compensates the data and store it in the bme280_data structure instance
  * passed by the user
  *
  * @param[in] self : Structure instance of bme280
- * @param[in] sensor_comp : Variable which selects which data to be read from 
+ * @param[in] sensor_comp : Variable which selects which data to be read from
  * the sensor.
  *
  *   sensor_comp  |  Macros
@@ -388,11 +388,11 @@ ssize_t bme280_get_sensor_data(struct bme280 *self, u8 sensor_comp,
 			       struct bme280_data *comp_data);
 
 /**
- * @brief Same as bme280_get_sensor_data but set forced power mode before 
+ * @brief Same as bme280_get_sensor_data but set forced power mode before
  * get sensor data. Put device to sleep after measuring
  *
  * @param[in] self : Structure instance of bme280
- * @param[in] sensor_comp : Variable which selects which data to be read from 
+ * @param[in] sensor_comp : Variable which selects which data to be read from
  * the sensor.
  *
  *   sensor_comp  |  Macros
@@ -411,25 +411,25 @@ ssize_t bme280_get_sensor_data_forced(struct bme280 *self, u8 sensor_comp,
 				      struct bme280_data *comp_data);
 
 /**
- * @brief Parse the pressure, temperature and humidity data and store it in 
+ * @brief Parse the pressure, temperature and humidity data and store it in
  * the bme280_uncomp_data structure instance
  *
  * @param[in] reg_data : Contains register data which needs to be parsed
- * @param[out] uncomp_data : Contains the uncompensated pressure, temperature 
+ * @param[out] uncomp_data : Contains the uncompensated pressure, temperature
  * and humidity data
  */
 void bme280_parse_sensor_data(const u8 *reg_data,
 			      struct bme280_uncomp_data *uncomp_data);
 
 /**
- * @brief Compensates the pressure and/or temperature and/or humidity data 
+ * @brief Compensates the pressure and/or temperature and/or humidity data
  * according to the component selected by the user
  *
- * @param[in] sensor_comp : Used to select pressure and/or temperature and/or 
+ * @param[in] sensor_comp : Used to select pressure and/or temperature and/or
  * humidity
- * @param[in] uncomp_data : Contains the uncompensated pressure, temperature 
+ * @param[in] uncomp_data : Contains the uncompensated pressure, temperature
  * and humidity data
- * @param[out] comp_data : Contains the compensated pressure and/or 
+ * @param[out] comp_data : Contains the compensated pressure and/or
  * temperature and/or humidity data
  * @param[in] calib_data : Pointer to the calibration data structure
  *

@@ -63,8 +63,8 @@ static ssize_t class_attr_i2c_show(struct class *class,
 	ssize_t ret;
 
 	/**
-	 * Protects from cases when bme280_device can be removed from 
-	 * list of registed devices earlier than necessary, or when 
+	 * Protects from cases when bme280_device can be removed from
+	 * list of registed devices earlier than necessary, or when
 	 * operation performed concurrently
 	 */
 	mutex_lock(&bme280_devices_lock);

@@ -11,7 +11,7 @@
 /**
  * @brief Creates the registers and data mapping in sysfs
  *
- * If you want to switch to another device, use /sys/bme280/i2c mapping, write 
+ * If you want to switch to another device, use /sys/bme280/i2c mapping, write
  * to it I2C adapter number in decimal and device address in hex
  *
  *   Mapping                         |  Operations
@@ -47,7 +47,7 @@
  *   /sys/class/bme280/temperature   |  read
  *   /sys/class/bme280/humidity      |  read
  *
- * Calibration data registers available only when compiled with DEBUG. All 
+ * Calibration data registers available only when compiled with DEBUG. All
  * other registers available always
  *
  * @return Result of execution
