@@ -16,13 +16,14 @@
   <p id="shields" align="center" markdown="1">
 
 [![License](https://img.shields.io/badge/license-MIT-3178C6?style=flat)](LICENSE)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)][github-pre-commit]
 ![Style Guide](https://img.shields.io/badge/code%20style-linux-FFC557?style=flat)
 ![clang-format](https://img.shields.io/badge/formatter-clang--format-262D3A?style=flat)
 [![markdownlint](https://img.shields.io/badge/linter-markdownlint-000?style=flat)][github-markdownlint]
+[![commitlint](https://img.shields.io/badge/linter-commitlint-F7B93E?style=flat)][github-commitlint]
 ![platform](https://img.shields.io/badge/platform-linux-FFC557?style=flat)
 [![Tested on Raspberry Pi](https://img.shields.io/badge/tested%20on-raspberry%20pi-A22846)][raspberrypi]
 [![Tested on Tinker Board](https://img.shields.io/badge/tested%20on-tinker%20board-005571)][tinker-board]
-![CI Workflow](https://github.com/malokhvii-eduard/lkmod-bme280/actions/workflows/ci.yml/badge.svg)
 
   </p>
 </div>
@@ -129,7 +130,9 @@ hex (`echo "0 0x77" > /sys/bme280/i2c`).
 ![Markdown](https://img.shields.io/badge/Markdown-000?logo=markdown&logoColor=fff&style=flat)
 ![C](https://img.shields.io/badge/C-A8B9CC?logo=c&logoColor=fff&style=flat)
 ![Makefile](https://img.shields.io/badge/Make-A42E2B?logo=gnu&logoColor=fff&style=flat)
+[![pre-commit](https://img.shields.io/badge/pre--commit-FAB040?logo=precommit&logoColor=fff&style=flat)][github-pre-commit]
 ![clang-format](https://img.shields.io/badge/clang--format-262D3A?logo=llvm&logoColor=fff&style=flat)
+[![commitlint](https://img.shields.io/badge/commitlint-F7B93E?logo=c&logoColor=000&style=flat)][github-commitlint]
 [![markdownlint](https://img.shields.io/badge/markdownlint-000?logo=markdown&logoColor=fff&style=flat)][github-markdownlint]
 ![Linux](https://img.shields.io/badge/Linux-FFC557?logo=linux&logoColor=000&style=flat)
 [![Linux Kernel](https://img.shields.io/badge/Linux%20Kernel-FFC557?logo=linux&logoColor=000&style=flat)](github-linux)
@@ -139,7 +142,6 @@ hex (`echo "0 0x77" > /sys/bme280/i2c`).
 [![Shields.io](https://img.shields.io/badge/Shields.io-000?logo=shieldsdotio&logoColor=fff&style=flat)][shields]
 [![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=fff&style=flat)][git-scm]
 [![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=fff&style=flat)][github]
-[![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?logo=githubactions&logoColor=fff&style=flat)][github-actions]
 <!-- markdownlint-enable MD013 -->
 
 ## ✍️ Contributing
@@ -168,8 +170,10 @@ more information.
 
 <!-- Github links -->
 [github-actions]: https://docs.github.com/en/actions
+[github-commitlint]: https://github.com/conventional-changelog/commitlint
 [github-linux]: https://github.com/torvalds/linux
 [github-markdownlint]: https://github.com/DavidAnson/markdownlint
+[github-pre-commit]: https://github.com/pre-commit/pre-commit
 [github-simple-icons]: https://github.com/simple-icons/simple-icons
 [github]: https://github.com
 
