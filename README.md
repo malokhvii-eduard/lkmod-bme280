@@ -169,12 +169,10 @@ more information.
 [man-sysfs]: https://man7.org/linux/man-pages/man5/sysfs.5.html
 
 <!-- Github links -->
-[github-actions]: https://docs.github.com/en/actions
 [github-commitlint]: https://github.com/conventional-changelog/commitlint
 [github-linux]: https://github.com/torvalds/linux
 [github-markdownlint]: https://github.com/DavidAnson/markdownlint
 [github-pre-commit]: https://github.com/pre-commit/pre-commit
-[github-simple-icons]: https://github.com/simple-icons/simple-icons
 [github]: https://github.com
 
 <!-- Other links -->
