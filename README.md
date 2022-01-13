@@ -51,7 +51,7 @@ the course from November 2019 until March 2020.
 
 Firstly you will need to install build dependencies such as compiler
 (`build-essential`, `g++-arm-linux-gnueabihf`, `gdb-multiarch`) and
-linux-headers. Next you will need to get source code for exact kernel version
+linux-headers. Next, you will need to get source code for exact kernel version
 you are running. You can find the kernel version via `uname -r`.
 
 ### 📦 Installation
