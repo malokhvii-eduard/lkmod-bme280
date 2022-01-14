@@ -28,8 +28,6 @@
   </p>
 </div>
 
----
-
 ## 🎉 Features
 
 - 🗃️ Provides an interface in [*sysfs*][man-sysfs] and
