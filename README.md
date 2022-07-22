@@ -133,7 +133,7 @@ hex (`echo "0 0x77" > /sys/bme280/i2c`).
 [![commitlint](https://img.shields.io/badge/commitlint-F7B93E?logo=c&logoColor=000&style=flat)][github-commitlint]
 [![markdownlint](https://img.shields.io/badge/markdownlint-000?logo=markdown&logoColor=fff&style=flat)][github-markdownlint]
 ![Linux](https://img.shields.io/badge/Linux-FFC557?logo=linux&logoColor=000&style=flat)
-[![Linux Kernel](https://img.shields.io/badge/Linux%20Kernel-FFC557?logo=linux&logoColor=000&style=flat)](github-linux)
+[![Linux Kernel](https://img.shields.io/badge/Linux%20Kernel-FFC557?logo=linux&logoColor=000&style=flat)][github-linux]
 [![BME280](https://img.shields.io/badge/BME280-EA0016?logo=bosch&logoColor=fff&style=flat)][bosch-sensortec-bme280]
 [![Raspberry Pi](https://img.shields.io/badge/Raspberry%20Pi-A22846?logo=raspberrypi&logoColor=fff&style=flat)][raspberrypi]
 [![Tinker Board](https://img.shields.io/badge/Tinker%20Board-005571?logo=asus&logoColor=fff&style=flat)][tinker-board]
