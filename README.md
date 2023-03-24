@@ -17,6 +17,7 @@
 
 [![License](https://img.shields.io/badge/license-MIT-3178C6?style=flat)](LICENSE)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)][github-pre-commit]
+[![pre-commit.ci](https://results.pre-commit.ci/badge/github/malokhvii-eduard/lkmod-bme280/master.svg)][pre-commit.ci]
 ![Style Guide](https://img.shields.io/badge/code%20style-linux-FFC557?style=flat)
 ![clang-format](https://img.shields.io/badge/formatter-clang--format-262D3A?style=flat)
 [![markdownlint](https://img.shields.io/badge/linter-markdownlint-000?style=flat)][github-markdownlint]
@@ -178,6 +179,7 @@ more information.
 [editorconfig]: https://editorconfig.org
 [git-scm]: https://git-scm.com
 [linux-kernel-basecamp]: https://www.globallogic.com/ua/gl-basecamp/linux-kernel/
+[pre-commit.ci]: https://results.pre-commit.ci/run/github/418202776/1674551293.vHb_m6v2SjGf1pqvxNcWiA
 [raspberrypi]: https://www.raspberrypi.com
 [shields]: https://shields.io
 [tinker-board]: https://tinker-board.asus.com/product/tinker-board.html
